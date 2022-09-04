@@ -5,6 +5,7 @@ const geocode = require('./utils/getcode');
 const forecast = require('./utils/forecast');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define path for express config
 const publicDirPath = path.join(__dirname, '../public');
@@ -70,13 +71,6 @@ app.get('/weather', (req, res) => {
   });
 });
 
-// Goal: Wire up /weather
-
-// 1. Require geocode/forecast into app.js
-// 2. Use the address to geocode
-// 3. Use the coordinates to get forecast
-// 4. Send back the real forecast and location
-
 app.get('/products', (req, res) => {
   if (!req.query.search) {
     return res.send({
@@ -104,6 +98,6 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log('Server is up on port' + port);
 });
